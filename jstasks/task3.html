@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         html,body{
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container{
+            width :40%;
+            height: 40vh;
+            border: 2px solid black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(0deg, rgba(250,230,141,1) 0%, rgba(237,168,196,1) 100%);
+
+        }
+        .item{
+            font-size: x-large;
+        }
+        .item input{
+            font-size: 20px;
+            height: 30px;
+        }
+        button{
+            height: 30px;
+            font-size: 20px;
+        }
+        p{
+            border: 1px solid black;
+            height: 30px;
+            width: 40%;
+            background-color: white;
+            color: black;
+            padding-top: 5PX;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="item">
+            <label for="inp1">1st Number</label>
+        <input type="number" name="inp1" id="inp1"><br><br>
+        <label for="inp2">2nd Number</label>
+        <input type="number" name="inp2" id="inp2"><br><br>
+        <button onclick="Multiply()">Multiply</button>
+        <button onclick="Divide()">Divide</button>
+        </div>
+        <p id="ans">The Result Is :</p>
+        
+    </div>
+    <script>
+        function Multiply(){
+           let inp1=document.getElementById('inp1').value;
+          let  inp2=document.getElementById('inp2').value;
+            let result=inp1*inp2;
+            document.getElementById('ans').innerHTML=result;
+        }
+        function Divide(){
+           let inp1=document.getElementById('inp1').value;
+          let  inp2=document.getElementById('inp2').value;
+            let result=inp1/inp2;
+            document.getElementById('ans').innerHTML=result;
+        }
+    </script>
+</body>
+</html>

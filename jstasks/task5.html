@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         html,body{
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container{
+            width :40%;
+            height: 40vh;
+            border: 2px solid black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(0deg, rgba(250,230,141,1) 0%, rgba(237,168,196,1) 100%);
+
+        }
+         
+        .error {
+            color: red;
+            font-size: 20px;
+            display: none;
+        }
+        .error-input {
+            border-color: red;
+        }
+        label{
+            font-size: 20px;
+            
+        }
+        input{
+            height: 30px;
+            width: 300px;
+        }
+        textarea{
+            width: 300px;
+        }
+        button{
+            margin-left: 150px;
+            height: 30px;
+            width: 100px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form id="myForm" action="">
+            <label for="name">Name :</label>
+            <input type="text" name="name" id="name">
+            <span class="error" id="nameError">This field is required</span><br><br>
+    
+            <label for="email">Email :</label>
+            <input type="email" name="email" id="email">
+            <span class="error" id="emailError">A valid email address is required</span><br><br>
+    
+            <label for="web">Website :</label>
+            <input type="url" name="web" id="web">
+            <span class="error" id="webError">A valid URL is required</span><br><br>
+    
+            <label for="message">Message :</label>
+            <textarea name="message" id="message" rows="5" cols="20"></textarea>
+            <span class="error" id="messageError">This field is required</span><br><br>
+    
+            <button type="submit" onclick="validate(event)">Submit</button>
+        </form>
+    </div>
+    <script>
+        function validate(event) {
+            let name = document.getElementById('name');
+            let email = document.getElementById('email');
+            let web = document.getElementById('web');
+            let message = document.getElementById('message');
+            let nameError = document.getElementById('nameError');
+            let emailError = document.getElementById('emailError');
+            let webError = document.getElementById('webError');
+            let messageError = document.getElementById('messageError');
+
+            let isValid = true;
+
+            // Name validation
+            if (name.value.trim() === '') {
+                name.classList.add('error-input');
+                nameError.style.display = 'inline';
+                isValid = false;
+            } else {
+                name.classList.remove('error-input');
+                nameError.style.display = 'none';
+            }
+
+            // Email validation
+            let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if (email.value.trim() === '' || !emailPattern.test(email.value.trim())) {
+                email.classList.add('error-input');
+                emailError.style.display = 'inline';
+                isValid = false;
+            } else {
+                email.classList.remove('error-input');
+                emailError.style.display = 'none';
+            }
+
+            // URL validation
+            let urlPattern = /^(ftp|http|https):\/\/[^ "]+$/;
+            if (web.value.trim() === '' || !urlPattern.test(web.value.trim())) {
+                web.classList.add('error-input');
+                webError.style.display = 'inline';
+                isValid = false;
+            } else {
+                web.classList.remove('error-input');
+                webError.style.display = 'none';
+            }
+
+            // Message validation
+            if (message.value.trim() === '') {
+                message.classList.add('error-input');
+                messageError.style.display = 'inline';
+                isValid = false;
+            } else {
+                message.classList.remove('error-input');
+                messageError.style.display = 'none';
+            }
+
+            // Prevent form submission if there are errors
+            if (!isValid) {
+                event.preventDefault();
+            }
+        }
+    </script>
+</body>
+</html>
